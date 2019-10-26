@@ -1,27 +1,26 @@
 import Vuex from 'vuex'
 import Vue from 'vue'
 import axios from 'axios'
-vue.use(Vuex)
-
-let store = new VueX.Store({
+Vue.use(Vuex)
+// Vue.use(require('vuex'))
+// 產生store
+const store = new Vuex.Store({
+    // ...
     state:{
-        todos: []
+        todos: [1,2,3]
     },
 
-    mutation: {
+    mutations: {
         setTodos(state,value){
-            state.todos = value
+            state.todos=value
         }
     },
 
-    action: {
+    actions: {
         loadTodos(context){
-            axios.get("https://jsonplaceholder.typicode.com/todos").then
-            (res=>{
-                context.commit("setTodos",res.data)
-            })
+            axios.get("https://jsonplaceholder.typicode.com/todos")
+            .then(res=>{context.commit("setTodos",res.data)})
         }
     }
 })
-
 export default store

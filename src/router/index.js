@@ -19,6 +19,7 @@ export default new Router({
       component: PageTest
     },
     {
+      //網址附加ID
       path: '/PageUser/id/:num',
       // name: 'PageUser',
       component: PageUser

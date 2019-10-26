@@ -2,6 +2,15 @@
   #app
     img(src="./assets/logo.png")
     br
+    ul
+      //- li(v-for="post in $store.state.todos") {{ post }}
+      //- computed中加進去對應過來：...mapState(['todos'])
+      li(v-for="post in todos") {{ post }}
+    br
+    //- setTodos向vuex提交修改資料
+    button(@click="setTodos(['lonelykite','Tom', 'iPhone'])") 更新Todos
+    button(@click="loadTodos") 載入全部資料
+    br
     router-link(to="/PageTest") 到新的頁面
     br
     router-link(to="/PageUser/Tina") 到新的頁面Tina
@@ -20,8 +29,27 @@
 </template>
 
 <script>
+// 從vuex的index.js那三個狀態import進來，各元件需要使用這行複製過去
+import { mapState , mapMutations , mapActions } from 'vuex'
+
 export default {
-  name: 'App'
+  name: 'App',
+
+  methods: {
+    ...mapMutations(['setTodos']),
+    ...mapActions(['loadTodos'])
+  },
+
+  // 從這裡向vuex提交修改資料，預設進來頁面載入資料也是放這裡
+  mounted() {
+    // this.setTodos(['a','b','c'])
+    // this.loadTodos()
+  },
+
+  computed: {
+    ...mapState(['todos'])
+  }
+
 }
 </script>
 

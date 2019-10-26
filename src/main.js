@@ -3,14 +3,17 @@
 import Vue from 'vue'
 import App from './App'
 import router from './router'
-
+import store from './store'
 
 Vue.config.productionTip = false
 
+//從actions中的第一次載入
+// store.dispatch("loadTodos")
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
   router,
+  store,
   components: { App },
   template: '<App/>'
 })

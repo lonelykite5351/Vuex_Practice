@@ -6,9 +6,13 @@
     h2 you are {{$route.params.name}}
 
     h2(v-if="user") 以id進入的頁面 {{user}}}
+    div
+        h3(v-for="todo in userTodos")  ID為：{{ todo.userId }} , Title為：{{todo.title}}
 </template>
 
 <script>
+import { mapState , mapMutations , mapActions } from 'vuex'
+
 export default {
     data(){
         return{
@@ -23,6 +27,12 @@ export default {
         user(){
             return this.users.find(user=>user.id == this.$route.params.num)
             
+        },
+
+        ...mapState(['todos']),
+
+        userTodos(){
+            return this.todos.filter(todo=>todo.userId == this.$route.params.num)
         }
     }
 
